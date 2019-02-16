@@ -3,6 +3,7 @@ import "./style.css";
 import Title from "../Title";
 import MessageList from "../MessageList";
 import SendMessageForm from "../SendMessageForm";
+import { ChatManager, TokenProvider } from '@pusher/chatkit'
 
 const instanceLocator = "v1:us1:475796a2-3140-4bf7-ae53-a3f0d894c31f"
 const testToken = "https://us1.pusherplatform.io/services/chatkit_token_provider/v1/475796a2-3140-4bf7-ae53-a3f0d894c31f/token"
@@ -29,10 +30,10 @@ class App extends Component {
   }
 
   componentDidMount() {
-    const chatManager = new Chatkit.ChatManager({
+    const chatManager = new ChatManager({
       instanceLocator: instanceLocator,
       userId: username,
-      tokenProvider: new Chatkit.TokenProvider({
+      tokenProvider: new TokenProvider({
         url: testToken
       })
     })
@@ -55,7 +56,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <h1>Hello World</h1>
+        <h1>Chat</h1>
         <Title />
         <MessageList messages={this.state.messages} />
         <SendMessageForm />
