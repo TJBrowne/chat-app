@@ -1,10 +1,8 @@
-import React, { Component } from "react";
+import React, { } from "react";
 import "./style.css";
 
-class Title extends Component {
-  render() {
-    return <div className="App">Title</div>;
-  }
+function Title () {
+  return <p className="title">Charlie's Chat App</p>
 }
 
 export default Title;
