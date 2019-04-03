@@ -5,7 +5,7 @@ import MessageList from "../MessageList";
 import SendMessageForm from "../SendMessageForm";
 import { ChatManager, TokenProvider } from '@pusher/chatkit-client'
 
-// const instanceLocator = "v1:us1:475796a2-3140-4bf7-ae53-a3f0d894c31f"
+const instanceLocator = "v1:us1:475796a2-3140-4bf7-ae53-a3f0d894c31f"
 const testToken = "https://us1.pusherplatform.io/services/chatkit_token_provider/v1/475796a2-3140-4bf7-ae53-a3f0d894c31f/token"
 const username = "TiffanyB"
 const roomId = "19779840"
@@ -27,16 +27,18 @@ class App extends Component {
     this.state = {
       messages: []
     }
+    this.sendMessage = this.sendMessage.bind(this)
   }
 
   componentDidMount() {
     const chatManager = new ChatManager({
-      instanceLocator: "v1:us1:475796a2-3140-4bf7-ae53-a3f0d894c31f",
+      instanceLocator: instanceLocator,
       userId: username,
       tokenProvider: new TokenProvider({url: testToken})
     })
     chatManager.connect().then(currentUser => {
-      currentUser.subscribeToRoom({
+      this.currentUser = currentUser
+      this.currentUser.subscribeToRoom({
         roomId: roomId,
         hooks: {
           onNewMessage: message => {
