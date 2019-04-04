@@ -30,6 +30,7 @@ class App extends Component {
     this.sendMessage = this.sendMessage.bind(this)
   }
 
+//  used to connect React components to API’s
   componentDidMount() {
     const chatManager = new ChatManager({
       instanceLocator: instanceLocator,
@@ -61,7 +62,7 @@ class App extends Component {
     return (
       <div className="app">
         <Title />
-        <MessageList messages={this.state.messages} />
+        <MessageList roomId={this.state.roomId} messages={this.state.messages} />
         <SendMessageForm sendMessage={this.sendMessage} />
       </div>
     )
