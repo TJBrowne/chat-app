@@ -5,7 +5,7 @@ class SendMessageForm extends Component {
     constructor() {
         super()
         this.state = {
-            message: ' '
+            message: ''
         }
         this.handleChange = this.handleChange.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
@@ -17,9 +17,10 @@ class SendMessageForm extends Component {
     }
     handleSubmit(e) {
         e.preventDefault()
+        // console.log(this.state.message)
         this.props.sendMessage(this.state.message)
         this.setState({
-            message: ' '
+            message: ''
         })
     }
 

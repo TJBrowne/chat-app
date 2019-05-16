@@ -4,11 +4,15 @@ import Title from "../Title";
 import MessageList from "../MessageList";
 import SendMessageForm from "../SendMessageForm";
 import { ChatManager, TokenProvider } from '@pusher/chatkit-client'
+import Chatkit from "@pusher/chatkit-server";
 
 const instanceLocator = "v1:us1:475796a2-3140-4bf7-ae53-a3f0d894c31f"
-const testToken = "https://us1.pusherplatform.io/services/chatkit_token_provider/v1/475796a2-3140-4bf7-ae53-a3f0d894c31f/token"
-const username = "TiffanyB"
+const tokenUrl = "https://us1.pusherplatform.io/services/chatkit_token_provider/v1/475796a2-3140-4bf7-ae53-a3f0d894c31f/token"
+// const username = "TiffanyB"
 const roomId = "19779840"
+
+// exports.tokenUrl = tokenUrl;
+// exports.instanceLocator = instanceLocator;
 
 // const DUMMY_DATA = [
 //   {
@@ -30,16 +34,18 @@ class App extends Component {
     this.sendMessage = this.sendMessage.bind(this)
   }
 
-//  used to connect React components to API’s
   componentDidMount() {
+    const tokenProvider = new TokenProvider({
+      url: "https://us1.pusherplatform.io/services/chatkit_token_provider/v1/475796a2-3140-4bf7-ae53-a3f0d894c31f/token"
+    });
     const chatManager = new ChatManager({
       instanceLocator: instanceLocator,
-      userId: username,
-      tokenProvider: new TokenProvider({url: testToken})
+      userId: "TiffanyB",
+      tokenProvider: new TokenProvider({url: tokenUrl})
     })
     chatManager.connect().then(currentUser => {
       this.currentUser = currentUser
-      this.currentUser.subscribeToRoom({
+      return this.currentUser.subscribeToRoom({
         roomId: roomId,
         hooks: {
           onNewMessage: message => {
@@ -68,5 +74,4 @@ class App extends Component {
     )
   }
 }
-
 export default App;

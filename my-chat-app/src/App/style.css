@@ -1,9 +1,9 @@
 :root {
-    --main-color: #5ea3d0;
-    --secondary-color: white;
-    --main-text-color: #3e5869;
-    --secondary-text-color: #b0c7d6;
-    --send-message-form: #F5F5F5;
+    --main-color: #0a1128;
+    --secondary-color: #FEFCFB;
+    --main-text-color: #212227;
+    --secondary-text-color: #637074;
+    --send-message-form: #637074;
 }
 
 html, body {
@@ -27,17 +27,18 @@ html, body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 40px;
+    height: 60px;
     color: var(--secondary-color);
     background: var(--main-color);
     box-sizing: border-box;
     margin: 0;
     padding: 0;
     text-align: center;
+    font-size: 35px;
 }
 
 .message {
-    margin: 15px 0;
+    margin: 35px 0;
 }
 
 .message div:nth-child(1) {
@@ -78,6 +79,7 @@ html, body {
     margin: 0;
     background: var(--send-message-form);
     font-weight: 200;
+    font-size: 25px;
 }
 
 .send-message-form input:focus {
